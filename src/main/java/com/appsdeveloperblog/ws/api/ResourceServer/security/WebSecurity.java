@@ -14,18 +14,13 @@ public class WebSecurity {
 	
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-		
-		JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-		jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new KeycloakRoleConverter());
-	 	
+
+
 		http 
-		.authorizeHttpRequests((authz) -> authz.requestMatchers(HttpMethod.GET, "/users/status/check")
-				// .hasAuthority("SCOPE_profile")
-				.hasRole("developer")
-				// .hasAnyAuthority("ROLE_developer")
+		.authorizeHttpRequests((authz) -> authz.requestMatchers(HttpMethod.GET, "/users")
+				.hasAuthority("SCOPE_profile")
 				.anyRequest().authenticated())
-		.oauth2ResourceServer(
-				oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
+		.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}));
 		
 		return http.build();
 	}
