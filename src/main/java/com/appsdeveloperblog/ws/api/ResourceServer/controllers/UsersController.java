@@ -1,6 +1,7 @@
 package com.appsdeveloperblog.ws.api.ResourceServer.controllers;
 
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,7 +13,8 @@ public class UsersController {
 		return "Working...";
 	}
 
-	@Secured("ROLE_developer")
+	@PreAuthorize("hasAuthority('ROLE_developer')")
+	//@Secured("ROLE_developer")
 	@DeleteMapping(path = "/{id}")
 	public String deleteUser(@PathVariable String id) {
 		return "Deleted user with id " + id;
