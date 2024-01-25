@@ -29,6 +29,9 @@ public class UsersController {
 	@PostAuthorize("returnObject.userId == #jwt.subject")
 	@GetMapping(path = "/{id}")
 	public UserRest getUser(@PathVariable String id, @AuthenticationPrincipal Jwt jwt) {
+		System.out.println("jwt.getSubject(): " + jwt.getSubject());
+		System.out.println("id param: " + id);
+		System.out.println("equality test: " + id.equalsIgnoreCase(jwt.getSubject()));
 		return new UserRest("jml", "dev",id);
 	}
 
