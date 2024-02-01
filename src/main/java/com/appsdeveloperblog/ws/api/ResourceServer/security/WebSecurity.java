@@ -25,7 +25,7 @@ public class WebSecurity {
 		JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
 		jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new KeycloakRoleConverter());
 
-/*		http
+		http
 		.authorizeHttpRequests((authz) -> authz.requestMatchers(HttpMethod.GET, "/users/status/check")
 				// .hasAuthority("SCOPE_profile")
 				.hasRole("developer")
@@ -34,11 +34,11 @@ public class WebSecurity {
 				.oauth2ResourceServer(
 						oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
 
-		return http.build();*/
+		return http.build();
 
 
 
-		http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+/*		http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 				.authorizeHttpRequests((authz) -> authz.requestMatchers(HttpMethod.GET, "/users/status/check")
 						// .hasAuthority("SCOPE_profile")
 						.hasRole("developer")
@@ -48,12 +48,12 @@ public class WebSecurity {
 				.oauth2ResourceServer(
 						oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
 
-		return http.build();
+		return http.build();*/
 
 	}
 
 
-	@Bean
+/*	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
@@ -63,6 +63,6 @@ public class WebSecurity {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", corsConfiguration);
 		return source;
-	}
+	}*/
 
 }
